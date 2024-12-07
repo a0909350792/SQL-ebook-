@@ -1,0 +1,421 @@
+{
+  "tables": [
+    {
+      "id": 0,
+      "name": "bookinfo",
+      "x": -740.0951394726567,
+      "y": -580.3930877285156,
+      "fields": [
+        {
+          "name": "bid",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "bname",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 50
+        },
+        {
+          "name": "price",
+          "type": "MONEY",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "values": []
+        },
+        {
+          "name": "status",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 3,
+          "size": 50
+        },
+        {
+          "name": "type",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 4,
+          "size": 50
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1733549812076
+    },
+    {
+      "id": 1,
+      "name": "inventory",
+      "x": 107.61252715101762,
+      "y": -575.8595725972276,
+      "fields": [
+        {
+          "name": "bid",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "wid",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "quantity",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "setdate",
+          "type": "DATETIME2",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 3
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1733550017343
+    },
+    {
+      "id": 2,
+      "name": "warehouses",
+      "x": 747.4234796584813,
+      "y": -543.5587287527903,
+      "fields": [
+        {
+          "name": "wid",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "wname",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 50
+        },
+        {
+          "name": "location",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": 50
+        },
+        {
+          "name": "setdate",
+          "type": "DATETIME2",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 3
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1733550135016
+    },
+    {
+      "id": 3,
+      "name": "userinfo",
+      "x": 20.391788172991255,
+      "y": -45.057514339285916,
+      "fields": [
+        {
+          "name": "cname",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": 50
+        },
+        {
+          "name": "password",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 50
+        },
+        {
+          "name": "cellphone",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": 255
+        },
+        {
+          "name": "address",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 3,
+          "size": 255
+        },
+        {
+          "name": "birthday",
+          "type": "DATETIME2",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 4
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1733551355837
+    },
+    {
+      "id": 4,
+      "name": "trade",
+      "x": -754.8235985234375,
+      "y": -79.16231574999983,
+      "fields": [
+        {
+          "name": "bid",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "cname",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 50
+        },
+        {
+          "name": "transactionType",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": 50
+        },
+        {
+          "name": "tquantity",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 3,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "ransactionDate",
+          "type": "DATETIME2",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 4
+        },
+        {
+          "name": "remarks",
+          "type": "NVARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 5,
+          "size": 50
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1733551562537
+    }
+  ],
+  "relationships": [
+    {
+      "startTableId": 1,
+      "startFieldId": 0,
+      "endTableId": 0,
+      "endFieldId": 0,
+      "cardinality": "one_to_many",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "inventory_bid_fk",
+      "id": 0
+    },
+    {
+      "startTableId": 2,
+      "startFieldId": 0,
+      "endTableId": 1,
+      "endFieldId": 1,
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "warehouses_wid_fk",
+      "id": 1
+    },
+    {
+      "startTableId": 4,
+      "startFieldId": 0,
+      "endTableId": 0,
+      "endFieldId": 0,
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "trade_bid_fk",
+      "id": 2
+    },
+    {
+      "startTableId": 3,
+      "startFieldId": 0,
+      "endTableId": 4,
+      "endFieldId": 1,
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "userinfo_cname_fk",
+      "id": 3
+    }
+  ],
+  "notes": [],
+  "subjectAreas": [],
+  "database": "transactsql",
+  "title": "SQL-Ebook-ER"
+}
