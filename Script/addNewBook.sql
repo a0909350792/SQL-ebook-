@@ -19,9 +19,9 @@ begin
 		return
 	end
 	-- 判斷金額、數量不能為負的
-	if @price < 0 or @quantity < 0
+	if @price <= 0 or @quantity <= 0
 	begin
-		select '金額或庫存數量不能小於0' as status
+		select '金額或庫存數量不能為0或負的' as status
 		return
 	end
 	-- 判斷倉庫是否存在
