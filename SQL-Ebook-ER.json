@@ -73,14 +73,14 @@
       ],
       "comment": "",
       "indices": [],
-      "color": "#175e7a",
+      "color": "#7c4af0",
       "key": 1733549812076
     },
     {
       "id": 1,
       "name": "inventory",
-      "x": 107.61252715101762,
-      "y": -575.8595725972276,
+      "x": -132.30670981241963,
+      "y": -575.6949322756651,
       "fields": [
         {
           "name": "bid",
@@ -137,14 +137,14 @@
       ],
       "comment": "",
       "indices": [],
-      "color": "#175e7a",
+      "color": "#6360f7",
       "key": 1733550017343
     },
     {
       "id": 2,
       "name": "warehouses",
-      "x": 747.4234796584813,
-      "y": -543.5587287527903,
+      "x": 625.5590109447318,
+      "y": -538.0222193346655,
       "fields": [
         {
           "name": "wid",
@@ -183,30 +183,18 @@
           "comment": "",
           "id": 2,
           "size": 50
-        },
-        {
-          "name": "setdate",
-          "type": "DATETIME2",
-          "default": "",
-          "check": "",
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "increment": false,
-          "comment": "",
-          "id": 3
         }
       ],
       "comment": "",
       "indices": [],
-      "color": "#175e7a",
+      "color": "#6360f7",
       "key": 1733550135016
     },
     {
       "id": 3,
       "name": "userinfo",
-      "x": 20.391788172991255,
-      "y": -45.057514339285916,
+      "x": 614.7403426710421,
+      "y": -17.889557219060777,
       "fields": [
         {
           "name": "cname",
@@ -223,7 +211,7 @@
         },
         {
           "name": "password",
-          "type": "NVARCHAR",
+          "type": "VARCHAR",
           "default": "",
           "check": "",
           "primary": false,
@@ -232,7 +220,7 @@
           "increment": false,
           "comment": "",
           "id": 1,
-          "size": 50
+          "size": 200
         },
         {
           "name": "cellphone",
@@ -245,7 +233,7 @@
           "increment": false,
           "comment": "",
           "id": 2,
-          "size": 255
+          "size": 50
         },
         {
           "name": "address",
@@ -258,7 +246,7 @@
           "increment": false,
           "comment": "",
           "id": 3,
-          "size": 255
+          "size": 50
         },
         {
           "name": "birthday",
@@ -275,15 +263,29 @@
       ],
       "comment": "",
       "indices": [],
-      "color": "#175e7a",
+      "color": "#f03c3c",
       "key": 1733551355837
     },
     {
       "id": 4,
       "name": "trade",
-      "x": -754.8235985234375,
-      "y": -79.16231574999983,
+      "x": -119.28318796066947,
+      "y": -87.01140091633908,
       "fields": [
+        {
+          "name": "trade_id",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
         {
           "name": "bid",
           "type": "INTEGER",
@@ -294,7 +296,9 @@
           "notNull": true,
           "increment": true,
           "comment": "",
-          "id": 0
+          "id": 1,
+          "size": "",
+          "values": []
         },
         {
           "name": "cname",
@@ -306,8 +310,9 @@
           "notNull": true,
           "increment": false,
           "comment": "",
-          "id": 1,
-          "size": 50
+          "id": 2,
+          "size": 50,
+          "values": []
         },
         {
           "name": "transactionType",
@@ -319,8 +324,9 @@
           "notNull": true,
           "increment": false,
           "comment": "",
-          "id": 2,
-          "size": 50
+          "id": 3,
+          "size": 50,
+          "values": []
         },
         {
           "name": "tquantity",
@@ -332,12 +338,12 @@
           "notNull": true,
           "increment": false,
           "comment": "",
-          "id": 3,
+          "id": 4,
           "size": "",
           "values": []
         },
         {
-          "name": "ransactionDate",
+          "name": "transactionDate",
           "type": "DATETIME2",
           "default": "",
           "check": "",
@@ -346,7 +352,9 @@
           "notNull": true,
           "increment": false,
           "comment": "",
-          "id": 4
+          "id": 5,
+          "size": "",
+          "values": []
         },
         {
           "name": "remarks",
@@ -358,13 +366,14 @@
           "notNull": false,
           "increment": false,
           "comment": "",
-          "id": 5,
-          "size": 50
+          "id": 6,
+          "size": 50,
+          "values": []
         }
       ],
       "comment": "",
       "indices": [],
-      "color": "#175e7a",
+      "color": "#f03c3c",
       "key": 1733551562537
     }
   ],
@@ -374,17 +383,17 @@
       "startFieldId": 0,
       "endTableId": 0,
       "endFieldId": 0,
-      "cardinality": "one_to_many",
+      "cardinality": "many_to_one",
       "updateConstraint": "No action",
       "deleteConstraint": "No action",
-      "name": "inventory_bid_fk",
+      "name": "bookinfo_bid_fk",
       "id": 0
     },
     {
-      "startTableId": 2,
-      "startFieldId": 0,
-      "endTableId": 1,
-      "endFieldId": 1,
+      "startTableId": 1,
+      "startFieldId": 1,
+      "endTableId": 2,
+      "endFieldId": 0,
       "cardinality": "many_to_one",
       "updateConstraint": "No action",
       "deleteConstraint": "No action",
@@ -393,7 +402,7 @@
     },
     {
       "startTableId": 4,
-      "startFieldId": 0,
+      "startFieldId": 1,
       "endTableId": 0,
       "endFieldId": 0,
       "cardinality": "many_to_one",
@@ -403,10 +412,10 @@
       "id": 2
     },
     {
-      "startTableId": 3,
-      "startFieldId": 0,
-      "endTableId": 4,
-      "endFieldId": 1,
+      "startTableId": 4,
+      "startFieldId": 2,
+      "endTableId": 3,
+      "endFieldId": 0,
       "cardinality": "many_to_one",
       "updateConstraint": "No action",
       "deleteConstraint": "No action",
