@@ -18,9 +18,9 @@ begin
 
 	-- 判斷要修改的金額不能跟原本一樣
 	select @oldPrice = price from bookinfo where bname = @bname
-	if @oldPrice = @price
+	if @oldPrice = @price or @price < 0
 	begin
-		select '修改的金額不能跟原本價格一樣' as status
+		select '修改的金額不能跟原本價格一樣或是為負的' as status
 		return
 	end
 	
