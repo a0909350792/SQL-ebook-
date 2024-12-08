@@ -47,13 +47,9 @@ BEGIN
     -- 將密碼進行 hash 處理
     SET @hashed_password = HASHBYTES('SHA2_512', CONVERT(VARBINARY(50), @password))
 
-    -- 更新用戶的密碼欄位為哈希密碼
-    UPDATE userinfo
-    SET password = CONVERT(VARCHAR(128), @hashed_password, 2) 
-    WHERE cname = @cname
+  
 
-	ALTER TABLE userinfo
-	DROP COLUMN cellphone;
+	
 
     -- 查詢該客戶所有的購買資料，顯示每筆交易明細及總和
     SELECT t.cname, 
@@ -67,8 +63,8 @@ BEGIN
                WHEN MONTH(u.birthday) = MONTH(GETDATE()) THEN b.price * t.tquantity * 0.8 
                ELSE b.price * t.tquantity 
            END AS discounted_price,
-           @query_time AS query_time,  -- 合併查詢時間
-           @birthday_discount AS birthday_discount  -- 顯示生日優惠標記
+           @query_time AS query_time,  -- 查詢時間
+           @birthday_discount AS birthday_discount  -- 生日優惠標記
     FROM trade t
     JOIN bookinfo b ON t.bid = b.bid
     JOIN userinfo u ON t.cname = u.cname
@@ -91,4 +87,9 @@ BEGIN
     WHERE t.cname = @cname
     GROUP BY t.cname
     ORDER BY t.cname  
+	
+	 SELECT cname, birthday, 
+           CONVERT(VARCHAR(128), HASHBYTES('SHA2_512', CONVERT(VARBINARY(50), password)), 2) AS hashed_password
+    FROM userinfo
+    WHERE cname = @cname
 END
