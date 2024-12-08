@@ -56,12 +56,4 @@ BEGIN
         -- 庫存不足，無法完成交易
         SELECT '庫存不足，無法完成交易' AS status;
     END
-END
-
-
-EXEC Inventorychanges 
-    @bid = 1,                      
-    @cname = '客戶2',              
-    @transactionType = '信用卡',    
-    @tquantity = 100,               
-    @remarks = '';                 
+END    

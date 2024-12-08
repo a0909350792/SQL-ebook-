@@ -291,7 +291,7 @@
           "type": "INTEGER",
           "default": "",
           "check": "",
-          "primary": true,
+          "primary": false,
           "unique": true,
           "notNull": true,
           "increment": true,
