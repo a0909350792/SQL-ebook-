@@ -7,3 +7,4 @@ EXEC ApplyBirthdayDiscount @cname = 'л╚дс5';
 
 
 
+select * from userinfo
