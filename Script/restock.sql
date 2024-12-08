@@ -1,21 +1,11 @@
-USE [ebook]
-GO
-
-/****** Object:  StoredProcedure [dbo].[restock]    Script Date: 2024/12/8 ä¸‹åˆ 02:43:10 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-create procedure [dbo].[restock]
+drop procedure if exists restock
+go
+create procedure restock
 	@bid int,
-	@q int   -- å¢åŠ çš„æ•¸é‡
+	@q int   --¼W¥[ªº¼Æ¶q
 as
 begin
 	update inventory set quantity = quantity + @q where bid = @bid
 	update inventory set setdate = getdate() where bid = @bid
 	update warehouse set setdate = getdate() where wid = (select wid from inventory where bid = @bid)
 end
-GO
-
