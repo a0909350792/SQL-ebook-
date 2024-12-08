@@ -1,4 +1,6 @@
-create procedure sp_GrossIncome
+drop procedure if exists GrossIncome
+go
+create procedure GrossIncome
 as
 begin
 --計算每年收入
@@ -13,7 +15,7 @@ group by Q, total
 order by Q
 
 --計算某年的季收入
-select Q,total as '總金額'
+select Q,sum(total) as '總金額'
 from(
     select datepart(quarter,ransactionDate) as Q ,sum(trade.tquantity*bookinfo.price) as total
     from bookinfo join trade on 
@@ -29,7 +31,7 @@ from(
 	union all
 	select 4,0
 )as u
-group by Q , total
+group by Q 
 order by Q
 
 end
