@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [ebook]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Database [ebook]    Script Date: 2024/12/10 下午 08:02:34 ******/
 CREATE DATABASE [ebook]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [ebook] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POL
 GO
 USE [ebook]
 GO
-/****** Object:  Table [dbo].[bookinfo]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Table [dbo].[bookinfo]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -99,7 +99,7 @@ CREATE TABLE [dbo].[bookinfo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[inventory]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Table [dbo].[inventory]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[inventory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[trade]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Table [dbo].[trade]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,11 +127,12 @@ CREATE TABLE [dbo].[trade](
 	[cname] [nvarchar](50) NOT NULL,
 	[transactionType] [nvarchar](50) NOT NULL,
 	[tquantity] [int] NOT NULL,
+	[total] [int] NULL,
 	[transactionDate] [datetime2](7) NULL,
 	[remarks] [nvarchar](50) NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[userinfo]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Table [dbo].[userinfo]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,13 +143,13 @@ CREATE TABLE [dbo].[userinfo](
 	[cellphone] [nvarchar](50) NULL,
 	[address] [nvarchar](50) NULL,
 	[birthday] [datetime2](7) NOT NULL,
- CONSTRAINT [PK_userinfo] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_userinfo_1] PRIMARY KEY CLUSTERED 
 (
 	[cname] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[warehouse]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Table [dbo].[warehouse]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -169,21 +170,32 @@ INSERT [dbo].[bookinfo] ([bid], [bname], [price], [status], [type]) VALUES (1, N
 INSERT [dbo].[bookinfo] ([bid], [bname], [price], [status], [type]) VALUES (3, N'HarryPotter', 418.0000, N'有庫存', N'奇幻小說')
 INSERT [dbo].[bookinfo] ([bid], [bname], [price], [status], [type]) VALUES (4, N'100種京都', 380.0000, N'有庫存', N'旅遊')
 INSERT [dbo].[bookinfo] ([bid], [bname], [price], [status], [type]) VALUES (6, N'張忠謀自傳全集', 1100.0000, N'有庫存', N'人物傳記')
+INSERT [dbo].[bookinfo] ([bid], [bname], [price], [status], [type]) VALUES (7, N'新書A', 560.0000, N'有庫存', N'技術類')
 SET IDENTITY_INSERT [dbo].[bookinfo] OFF
 GO
-INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (1, 2, 20, CAST(N'2024-12-07T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (3, 3, 5, CAST(N'2024-12-07T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (4, 2, 1, CAST(N'2024-12-07T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (6, 3, 5, CAST(N'2024-12-07T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (1, 2, 0, CAST(N'2024-12-09T22:32:13.7666667' AS DateTime2))
+INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (3, 3, 13, CAST(N'2024-12-10T19:57:02.8700000' AS DateTime2))
+INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (4, 2, 20, CAST(N'2024-12-07T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (6, 3, 18, CAST(N'2024-12-08T22:19:57.0700000' AS DateTime2))
+INSERT [dbo].[inventory] ([bid], [wid], [quantity], [setdate]) VALUES (7, 2, 10, CAST(N'2024-12-09T20:56:49.3333333' AS DateTime2))
 GO
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (1, 1, N'客戶2', N'信用卡', 3, CAST(N'2024-02-08T12:30:00.0000000' AS DateTime2), N'中午12:00後')
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (2, 3, N'客戶4', N'貨到付款', 5, CAST(N'2024-12-08T15:33:00.0000000' AS DateTime2), N'晚上6點後')
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (3, 4, N'客戶3', N'信用卡', 4, CAST(N'2024-12-07T22:54:00.0000000' AS DateTime2), NULL)
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (4, 6, N'客戶5', N'貨到付款', 5, CAST(N'2024-07-08T00:00:00.0000000' AS DateTime2), NULL)
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (5, 1, N'客戶5', N'貨到付款', 1, CAST(N'2014-01-28T00:00:00.0000000' AS DateTime2), NULL)
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (6, 1, N'客戶5', N'貨到付款', 1, CAST(N'2024-08-08T12:12:00.0000000' AS DateTime2), NULL)
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (7, 1, N'客戶1', N'信用卡', 3, CAST(N'2024-05-04T12:30:00.0000000' AS DateTime2), N'中午12:00後')
-INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [transactionDate], [remarks]) VALUES (8, 6, N'客戶4', N'貨到付款', 2, CAST(N'2024-10-08T18:33:00.0000000' AS DateTime2), NULL)
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (1, 1, N'客戶2', N'信用卡', 3, NULL, CAST(N'2024-02-08T12:30:00.0000000' AS DateTime2), N'中午12:00後')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (2, 3, N'客戶4', N'貨到付款', 5, NULL, CAST(N'2024-12-08T15:33:00.0000000' AS DateTime2), N'晚上6點後')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (3, 4, N'客戶3', N'信用卡', 4, NULL, CAST(N'2024-12-07T22:54:00.0000000' AS DateTime2), NULL)
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (4, 6, N'客戶5', N'貨到付款', 5, NULL, CAST(N'2024-07-08T00:00:00.0000000' AS DateTime2), NULL)
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (5, 1, N'客戶5', N'貨到付款', 1, NULL, CAST(N'2014-01-28T00:00:00.0000000' AS DateTime2), NULL)
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (6, 1, N'客戶5', N'貨到付款', 1, NULL, CAST(N'2024-08-08T12:12:00.0000000' AS DateTime2), NULL)
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (7, 1, N'客戶1', N'信用卡', 3, NULL, CAST(N'2024-05-04T12:30:00.0000000' AS DateTime2), N'中午12:00後')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (8, 6, N'客戶4', N'貨到付款', 2, NULL, CAST(N'2024-10-08T18:33:00.0000000' AS DateTime2), NULL)
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (1, 3, N'客戶5', N'信用卡', 5, NULL, CAST(N'2024-12-08T00:00:00.0000000' AS DateTime2), N'晚上9點')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (9, 1, N'客戶2', N'信用卡', 1, NULL, CAST(N'2024-12-09T21:03:10.9300000' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (10, 1, N'客戶3', N'信用卡', 1, 440, CAST(N'2024-12-09T22:29:09.3200000' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (11, 1, N'客戶3', N'信用卡', 3, 1320, CAST(N'2024-12-09T22:31:13.9200000' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (12, 1, N'客戶1', N'信用卡', 1, 550, CAST(N'2024-12-09T22:32:13.7666667' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (13, 3, N'客戶1', N'信用卡', 1, 418, CAST(N'2024-12-09T22:33:43.0066667' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (14, 3, N'客戶1', N'信用卡', 1, 418, CAST(N'2024-12-09T22:35:20.7000000' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (15, 3, N'客戶1', N'信用卡', 1, 418, CAST(N'2024-12-09T22:40:56.5700000' AS DateTime2), N'')
+INSERT [dbo].[trade] ([trade_id], [bid], [cname], [transactionType], [tquantity], [total], [transactionDate], [remarks]) VALUES (16, 3, N'客戶2', N'信用卡', 1, 418, CAST(N'2024-12-10T19:57:02.8700000' AS DateTime2), N'')
 GO
 INSERT [dbo].[userinfo] ([cname], [password], [cellphone], [address], [birthday]) VALUES (N'客戶1', N'tsmc2330', N'0923302330', N'tsmc2330@tsmc.com', CAST(N'1994-09-05T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[userinfo] ([cname], [password], [cellphone], [address], [birthday]) VALUES (N'客戶2', N'rich888person', N'0977766520', N'abc888@gmail.com', CAST(N'2011-08-07T00:00:00.0000000' AS DateTime2))
@@ -197,7 +209,7 @@ INSERT [dbo].[warehouse] ([wid], [wname], [location]) VALUES (2, N'倉庫A', N'�
 INSERT [dbo].[warehouse] ([wid], [wname], [location]) VALUES (3, N'倉庫B', N'西側')
 SET IDENTITY_INSERT [dbo].[warehouse] OFF
 GO
-/****** Object:  Index [IX_trade]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  Index [IX_trade]    Script Date: 2024/12/10 下午 08:02:34 ******/
 CREATE NONCLUSTERED INDEX [IX_trade] ON [dbo].[trade]
 (
 	[trade_id] ASC
@@ -222,21 +234,14 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[trade] CHECK CONSTRAINT [FK_trade_bookinfo]
 GO
-ALTER TABLE [dbo].[trade]  WITH CHECK ADD  CONSTRAINT [FK_trade_userinfo] FOREIGN KEY([cname])
-REFERENCES [dbo].[userinfo] ([cname])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[trade] CHECK CONSTRAINT [FK_trade_userinfo]
-GO
-/****** Object:  StoredProcedure [dbo].[AddNewBook]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[AddNewBook]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
 -- 新增書籍與庫存
-create procedure [dbo].[AddNewBook]
+CREATE procedure [dbo].[AddNewBook]
 	@bname nvarchar(50),
 	@price money,
 	@quantity int,
@@ -274,21 +279,8 @@ begin
 	insert into inventory(bid,wid,quantity,setdate) values (@bid,@wid,@quantity,getdate())
 	select '成功新增' as status
 end
-
---EXEC AddNewBook 
---    @bname = '新書A', 
---    @price = 560.00, 
---    @quantity = 10, 
---    @type = '技術類', 
---    @wname = '倉庫A';
-
-
--- select * from bookinfo
--- select * from inventory
-ALTER TABLE [dbo].[userinfo]  WITH CHECK ADD  CONSTRAINT [FK_userinfo_userinfo] FOREIGN KEY([cname])
-REFERENCES [dbo].[userinfo] ([cname])
 GO
-/****** Object:  StoredProcedure [dbo].[ApplyBirthdayDiscount]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[ApplyBirthdayDiscount]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -345,24 +337,24 @@ BEGIN
 	
 
     -- 查詢該客戶所有的購買資料，顯示每筆交易明細及總和
-    SELECT t.cname, 
-           t.transactionDate, 
-           b.bname AS book_name, 
-           b.price AS unit_price,
-           t.tquantity AS quantity, 
-           b.price * t.tquantity AS total_price, 
+    --SELECT t.cname, 
+         --  t.transactionDate, 
+          -- b.bname AS book_name, 
+         --  b.price AS unit_price,
+          -- t.tquantity AS quantity, 
+         -- b.price * t.tquantity AS total_price, 
            -- 如果是當月生日，給予折扣
-           CASE 
-               WHEN MONTH(u.birthday) = MONTH(GETDATE()) THEN b.price * t.tquantity * 0.8 
-               ELSE b.price * t.tquantity 
-           END AS discounted_price,
-           @query_time AS query_time,  -- 查詢時間
-           @birthday_discount AS birthday_discount  -- 生日優惠標記
-    FROM trade t
-    JOIN bookinfo b ON t.bid = b.bid
-    JOIN userinfo u ON t.cname = u.cname
-    WHERE t.cname = @cname
-    ORDER BY t.transactionDate DESC  -- 顯示所有交易並按日期排序
+          -- CASE 
+             --  WHEN MONTH(u.birthday) = MONTH(GETDATE()) THEN b.price * t.tquantity * 0.8 
+            --   ELSE b.price * t.tquantity 
+         --  END AS discounted_price,
+          -- @query_time AS query_time,  -- 查詢時間
+          -- @birthday_discount AS birthday_discount  -- 生日優惠標記
+   -- FROM trade t
+   -- JOIN bookinfo b ON t.bid = b.bid
+   -- JOIN userinfo u ON t.cname = u.cname
+  --  WHERE t.cname = @cname
+  --  ORDER BY t.transactionDate DESC  -- 顯示所有交易並按日期排序
 
     -- 計算該客戶的總購買數量、總金額和總折扣金額
     SELECT t.cname, 
@@ -381,13 +373,13 @@ BEGIN
     GROUP BY t.cname
     ORDER BY t.cname  
 	
-	 SELECT cname, birthday, 
-           CONVERT(VARCHAR(128), HASHBYTES('SHA2_512', CONVERT(VARBINARY(50), password)), 2) AS hashed_password
-    FROM userinfo
-    WHERE cname = @cname
+	 --SELECT cname, birthday, 
+       --    CONVERT(VARCHAR(128), HASHBYTES('SHA2_512', CONVERT(VARBINARY(50), password)), 2) AS hashed_password
+    --FROM userinfo
+    --WHERE cname = @cname
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BrowseBook]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[BrowseBook]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -403,83 +395,120 @@ as begin
 		on inventory.wid=warehouse.wid
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GrossIncome]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[GrossIncome]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-create procedure [dbo].[GrossIncome]
-as
-begin
---計算每年收入
-select Q as '年',total as '總金額'
-from(
-    select datepart(YEAR,transactionDate) as Q ,sum(trade.tquantity*bookinfo.price) as total
-    from bookinfo join trade on 
-	     bookinfo.bid = trade.bid
-    group by datepart(YEAR,transactionDate)
-)as u
-group by Q, total
-order by Q
+CREATE PROCEDURE [dbo].[GrossIncome]
+AS
+BEGIN
+    -- 計算年度收入
+    SELECT 
+        '年度' AS report_type,  -- 用於標識這是年度報表
+        Q AS '期間',
+        SUM(CASE 
+                WHEN MONTH(u.birthday) = MONTH(GETDATE()) THEN total * 0.8  -- 如果是當月生日，給 8 折
+                ELSE total 
+            END) AS '總金額'
+    FROM (
+        SELECT 
+            DATEPART(YEAR, transactionDate) AS Q, 
+            SUM(trade.tquantity * bookinfo.price) AS total,
+            u.birthday
+        FROM bookinfo
+        JOIN trade ON bookinfo.bid = trade.bid
+        JOIN userinfo u ON trade.cname = u.cname
+        GROUP BY DATEPART(YEAR, transactionDate), u.birthday
+    ) AS u
+    GROUP BY Q
 
---計算某年的季收入
-select Q,sum(total) as '總金額'
-from(
-    select datepart(quarter,transactionDate) as Q ,sum(trade.tquantity*bookinfo.price) as total
-    from bookinfo join trade on 
-	     bookinfo.bid = trade.bid
-    where datepart(year,transactionDate) = 2024
-    group by datepart(quarter,transactionDate)
-	union all
-	select 1,0
-	union all
-	select 2,0
-	union all
-	select 3,0
-	union all
-	select 4,0
-)as u
-group by Q 
-order by Q
+    UNION ALL  -- 使用 UNION ALL 合併年度報表與季度報表
 
-end
+    -- 計算季度收入
+    SELECT 
+        '季度' AS report_type,  -- 用於標識這是季度報表
+        Q AS '期間',
+        SUM(CASE 
+                WHEN MONTH(u.birthday) = MONTH(GETDATE()) THEN total * 0.8  -- 如果是當月生日，給 8 折
+                ELSE total 
+            END) AS '總金額'
+    FROM (
+        SELECT 
+            DATEPART(QUARTER, transactionDate) AS Q, 
+            SUM(trade.tquantity * bookinfo.price) AS total,
+            u.birthday
+        FROM bookinfo
+        JOIN trade ON bookinfo.bid = trade.bid
+        JOIN userinfo u ON trade.cname = u.cname
+        WHERE DATEPART(YEAR, transactionDate) = 2024
+        GROUP BY DATEPART(QUARTER, transactionDate), u.birthday
+        UNION ALL
+        SELECT 1, 0, NULL
+        UNION ALL
+        SELECT 2, 0, NULL
+        UNION ALL
+        SELECT 3, 0, NULL
+        UNION ALL
+        SELECT 4, 0, NULL
+    ) AS u
+    GROUP BY Q
+    ORDER BY report_type,期間  -- 按照報表類型和期間排序
+END
 GO
-/****** Object:  StoredProcedure [dbo].[Inventorychanges]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[Inventorychanges]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[Inventorychanges]
-    @bid INT,                        
-    @cname NVARCHAR(50),             
-    @transactionType NVARCHAR(50),   
-    @tquantity INT,                  
-    @remarks NVARCHAR(50)            
+    @cname NVARCHAR(50),              -- 客戶名稱
+    @transactionType NVARCHAR(50),     -- 交易類型
+    @remarks NVARCHAR(50),             -- 備註
+    @bid INT,                          -- 書籍ID（單筆資料）
+    @tquantity INT                     -- 交易數量（單筆資料）
 AS
 BEGIN
-    DECLARE @wid INT;           -- 倉庫ID
-    DECLARE @quantity INT;      -- 當前庫存量
-    DECLARE @trade_id INT;      -- 交易ID
-    DECLARE @transactionDate DATETIME2(7) = GETDATE();
+    DECLARE @wid INT;                -- 倉庫ID
+    DECLARE @quantity INT;           -- 當前庫存量
+    DECLARE @price MONEY;            -- 書籍單價
+    DECLARE @total MONEY;            -- 計算後的總金額
+    DECLARE @transactionDate DATETIME2(7) = GETDATE(); -- 交易日期
+    DECLARE @birthday_discount INT = 0;  -- 生日優惠標記，0 表示沒有，1 表示有
+
     -- 根據 bid 查找書籍是否存在
     IF NOT EXISTS (SELECT 1 FROM bookinfo WHERE bid = @bid)
     BEGIN
         -- 書籍不存在，返回錯誤訊息
-        SELECT '書本不存在' AS status;
+        SELECT '書本不存在，bid=' + CAST(@bid AS NVARCHAR(50)) AS status;
         RETURN;
     END
 
-    -- 根據書籍ID查詢倉庫ID和庫存量
-    SELECT TOP 1 @wid = wid, @quantity = quantity 
-    FROM inventory 
-    WHERE bid = @bid;
+    -- 根據書籍ID查詢倉庫ID、庫存量以及書籍價格
+    SELECT TOP 1 @wid = wid, @quantity = quantity, @price = price
+    FROM inventory
+    JOIN bookinfo ON bookinfo.bid = inventory.bid
+    WHERE inventory.bid = @bid;
 
     -- 判斷交易數量是否大於零
     IF @tquantity <= 0
     BEGIN
-        SELECT '下單數量不可為零' AS status;
+        SELECT '下單數量不可為零，bid=' + CAST(@bid AS NVARCHAR(50)) AS status;
         RETURN;
+    END
+
+    -- 查詢用戶的生日，判斷是否為當月生日
+    IF EXISTS (SELECT 1 FROM userinfo WHERE cname = @cname AND MONTH(birthday) = MONTH(GETDATE()))
+    BEGIN
+        SET @birthday_discount = 1;  -- 如果是當月生日，設置為有生日優惠
+    END
+
+    -- 計算總金額，若有生日優惠則8折
+    SET @total = @price * @tquantity;
+    IF @birthday_discount = 1
+    BEGIN
+        SET @total = @total * 0.8;  -- 生日優惠，給 8 折
     END
 
     -- 如果庫存足夠，則減少庫存量
@@ -491,23 +520,32 @@ BEGIN
         WHERE bid = @bid AND wid = @wid;
 
         -- 手動生成 trade_id
+        DECLARE @trade_id INT;
         SELECT @trade_id = ISNULL(MAX(trade_id), 0) + 1 FROM trade;
 
-        -- 插入交易記錄
-        INSERT INTO trade (trade_id, bid, cname, transactionType, tquantity, transactionDate, remarks)
-        VALUES (@trade_id, @bid, @cname, @transactionType, @tquantity, @transactionDate, @remarks);
+        -- 插入交易記錄，包括計算後的總金額
+        INSERT INTO trade (trade_id, bid, cname, transactionType, tquantity, transactionDate, remarks, total)
+        VALUES (@trade_id, @bid, @cname, @transactionType, @tquantity, @transactionDate, @remarks, @total);
 
-        -- 顯示庫存更新成功
-        SELECT '交易完成，庫存數量已減少' AS status;
+        -- 顯示交易狀態，包括價格、交易數量、總金額和庫存
+        SELECT 
+            '交易完成，bid=' + CAST(@bid AS NVARCHAR(50)) + 
+            ', tquantity=' + CAST(@tquantity AS NVARCHAR(50)) +
+            ', 單價=' + CAST(@price AS NVARCHAR(50)) +
+            ', 總金額=' + CAST(@total AS NVARCHAR(50)) +
+            ', 庫存數量為 ' + CAST(quantity AS NVARCHAR(50)) AS status
+        FROM inventory
+        WHERE bid = @bid AND wid = @wid;
+
     END
     ELSE
     BEGIN
         -- 庫存不足，無法完成交易
-        SELECT '庫存不足，無法完成交易' AS status;
+        SELECT '庫存不足，bid=' + CAST(@bid AS NVARCHAR(50)) AS status;
     END
-END    
+END
 GO
-/****** Object:  StoredProcedure [dbo].[modifyPrice]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[modifyPrice]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -544,7 +582,7 @@ end
 -- exec modifyPrice '新書C',10
 -- select * from bookinfo
 GO
-/****** Object:  StoredProcedure [dbo].[restock]    Script Date: 2024/12/9 上午 10:42:10 ******/
+/****** Object:  StoredProcedure [dbo].[restock]    Script Date: 2024/12/10 下午 08:02:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
